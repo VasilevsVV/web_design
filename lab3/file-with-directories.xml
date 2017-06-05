@@ -1,0 +1,71 @@
+<?xml version="1.0" ?>
+<root>
+    <directories>
+        <name>Dir1</name>
+        <type>folder</type>
+
+            <directories>
+                    <name>Dir1.1</name>
+                    <type>folder</type>
+                
+                    <directories>
+                        <name>File1.1.1</name>
+                        <type>file</type>
+
+                        <directories />
+                    </directories>
+
+                    <directories>
+                        <name>File1.1.2</name>
+                        <type>file</type>
+
+                        <directories />
+                    </directories>
+                    
+                    <directories />
+            </directories>  
+
+            <directories>
+                <name>Dir1.2</name>
+                <type>folder</type>
+
+                <directories>
+                    <name>File1.2.1</name>
+                    <type>file</type>
+
+                    <directories />
+                </directories>
+
+                <directories />
+            </directories>
+
+    </directories>
+
+    <directories>
+        <name>Dir2</name>
+        <type>folder</type>
+
+            <directories>
+                <name>Dir2.1</name>
+                <type>folder</type>
+
+                <directories />
+            </directories>
+
+            <directories>
+                <name>Dir2.2</name>
+                <type>folder</type>
+
+                <directories />
+            </directories>
+
+            <directories>
+                <name>Dir2.3</name>
+                <type>folder</type>
+
+                <directories />
+            </directories>
+
+        <directories />
+    </directories>
+</root>

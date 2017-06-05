@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript">
+
+            $(document).ready(function () {
+                
+                function outTree(tree, styleString) {
+                    var html = "<ul style='" + styleString + "'>";
+                    tree.map(function (item) {
+                        if (!$.isEmptyObject(item)) {
+                            if (!$.isEmptyObject(item.directories)) {
+                                html += "<li><span class='" + item.type + " clickable'>" + item.name + "</span>";
+                                html += outTree(item.directories, "display: none");
+                            }
+                            else {
+                                html += "<li><span class='" + item.type + "'>" + item.name + "</span>";
+                            }
+                            html += "</li>";
+                        }
+                    });
+                    return html + "</ul>";
+                }
+
+                $("a.out_tree").click(function (e) {
+                    e.preventDefault();
+
+                    $.ajax({
+                        url: $(this).attr("href"),
+                        type: "get",
+                        success: function (response) {
+                            $(".tree").html(outTree(JSON.parse(response).directories));
+                        }
+                    });
+                });
+
+                $("div.tree").on("click", "li > span", function (e) {
+                    if ($(this).parent().parent().children().length == 1) {
+                        return;
+                    }
+                    $(this).next().toggle();
+                });
+
+            });
+
+        </script>
+    </head>
+    <style type="text/css">
+        ul {
+            list-style: none;
+        }
+        .folder {
+            text-decoration: underline;
+        }
+        .file {
+            font-style: italic;
+        }
+        .clickable {
+            cursor: pointer;
+        }
+    </style>
+    <body>
+        <a class="out_tree" href="server-part.php?file_path=file-with-directories.xml" title="">Out Tree</a>
+        <div class="tree"></div>
+    </body>
+</html>
